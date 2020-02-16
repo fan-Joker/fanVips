@@ -1,0 +1,15 @@
+Vip_grupos:
+  - heroi
+  - lendario
+  - supremo
+Comandos_trocar:
+  - 'pex user %name% group remove %oldgroup%'
+  - 'pex user %name% group add %newgroup%'
+Comandos_remover:
+  - 'pex user %name% group remove %grupo%'
+Comandos_ativacao:
+  - 'heroi,pex user %name% group add vip+'
+  - 'heroi,tm bc &d@player<nl>&fTornou-se &5[Heroi]!'
+ExplosivePickaxe:
+  Mundos_permitidos:
+    - ''
