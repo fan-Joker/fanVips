@@ -1,4 +1,4 @@
-package fanjoker.vips;
+package me.fanjoker.vips;
 
 public class Messages {
 

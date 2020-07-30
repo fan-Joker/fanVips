@@ -1,6 +1,6 @@
-package fanjoker.vips.config;
+package me.fanjoker.vips.config;
 
-import fanjoker.vips.Main;
+import me.fanjoker.vips.Main;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.util.List;

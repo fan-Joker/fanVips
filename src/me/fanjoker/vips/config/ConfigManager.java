@@ -1,4 +1,4 @@
-package fanjoker.vips.config;
+package me.fanjoker.vips.config;
 
 import java.util.HashMap;
 import java.util.Map;

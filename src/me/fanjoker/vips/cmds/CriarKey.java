@@ -1,20 +1,14 @@
-package fanjoker.vips.cmds;
+package me.fanjoker.vips.cmds;
 
-import fanjoker.vips.Main;
-import fanjoker.vips.Messages;
-import fanjoker.vips.utils.RandomString;
-import fanjoker.vips.utils.TFormat;
-import fanjoker.vips.utils.Vips;
+import me.fanjoker.vips.Main;
+import me.fanjoker.vips.Messages;
+import me.fanjoker.vips.utils.TFormat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static fanjoker.vips.utils.RandomString.getString;
-
-import javax.jws.WebParam;
 import java.math.BigDecimal;
-import java.util.Random;
 
 public class CriarKey implements CommandExecutor {
 
@@ -27,15 +21,15 @@ public class CriarKey implements CommandExecutor {
             }
             if(args.length == 1) {
                 String vip = args[0];
-                if(!Vips.existsVip(vip)) {
+//                if(!Vips.existsVip(vip)) {
                     p.sendMessage("§cGrupo não foi encontrado.");
                     return true;
-                }
+//                }
             }
             if(args.length == 2) {
                 String target = args[0];
                 String vip = args[0];
-                if(Vips.existsVip(vip)) {
+//                if(Vips.existsVip(vip)) {
                     if (args[1].endsWith("m")) {
                         try {
                             int dias = Integer.valueOf(args[1].replace("m", ""));
@@ -73,20 +67,22 @@ public class CriarKey implements CommandExecutor {
             } else {
                 p.sendMessage("§cUse: /criarkey <grupo> <tempo>");
             }
-        } else {
-            p.sendMessage(Messages.noperm());
-        }
+//        } else {
+//            p.sendMessage(Messages.noperm());
+//        }
         return false;
     }
     public static void criar(Player p, String vip, int dias){
-        String key = getString(Main.configManager.getConfig("config").getYaml().getInt("Key_tamanho"));
+        String key = String.valueOf(Main.configManager.getConfig("config").getYaml().getInt("Key_tamanho"));
         BigDecimal onee = new BigDecimal(dias).multiply(new BigDecimal("1000"));
-        BigDecimal one = new BigDecimal(dias).divide(new BigDecimal("1000"));
-        Vips.createKey(key, vip.toLowerCase(), one.intValue());
         p.sendMessage(new String[] { "",
+                "",
                 "§6 Informações da key:",
                 "§6  Grupo: §e" + vip.toUpperCase(),
                 "§6  Tempo: §e" + TFormat.format(onee.longValue()), "",
                 "§6  Key: §u" + key, ""});
+        Main.configManager.getConfig("vips").getYaml().set("Keys." + key + ".tempo", dias);
+        Main.configManager.getConfig("vips").getYaml().set("Keys." + key + ".vip", vip);
+        Main.configManager.getConfig("vips").save();
     }
 }

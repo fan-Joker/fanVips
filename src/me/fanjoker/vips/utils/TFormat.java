@@ -1,4 +1,4 @@
-package fanjoker.vips.utils;
+package me.fanjoker.vips.utils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,6 +7,8 @@ public class TFormat {
     public static String format(long tempo) {
         if (tempo == 0)
             return "0 segundos";
+
+        tempo = tempo + 1000;
 
         long dias = TimeUnit.MILLISECONDS.toDays(tempo);
         long horas = TimeUnit.MILLISECONDS.toHours(tempo) - (dias * 24);
